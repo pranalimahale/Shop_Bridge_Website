@@ -5,6 +5,9 @@ Project name:Shop bridge website
 Description :This is website related to add some item in database and display data.
              In this website add name,price,description and image upload.
              In this website we are using Local Database.
+             When you click Show data button then grid show all the insert records.
+             If you see individual record detils then you click Edit button it is redirect to product show controller action methode and see selected record data.
+             
              
              
 Table of Contents : In Local Database create one table.
