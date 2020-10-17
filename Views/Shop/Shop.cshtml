@@ -1,0 +1,87 @@
+﻿@model ShopBridge.ViewModel.ShopData
+
+@{
+    ViewBag.Title = "Shop";
+}
+
+
+<h2>Shop</h2>
+
+@using (Html.BeginForm("Shop", "Shop", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Product ADD</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name,new { @class = "control-label col-md-2" })
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Price)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Price)
+            @Html.ValidationMessageFor(model => model.Price)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Descreption)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Descreption)
+            @Html.ValidationMessageFor(model => model.Descreption)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Imagepath, "Upload  Photo")
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.ImageData, new { Type = "File" })
+            @Html.ValidationMessageFor(model => model.ImageData)
+        </div>
+
+
+        <p>
+            <input type="submit" value="Add Product" />
+        </p>
+         <p>
+           <input type="button" name="submit" value="Show Data" id="btnShow" />  
+        </p>
+    </fieldset>
+}
+
+
+<script src="~/Script/jquery-3.5.1.js"></script>
+<div id="dvShow"></div>  
+<script>  
+/* we have ajax call for calling GetDetails which will return html data in vHtml variable */  
+    $(document).ready(function () {  
+        $("#btnShow").click(function () {  debugger
+            $.ajax({  
+                url: '@Url.Action("GetDetails","Shop")',  
+                type: 'post',  
+                success: function (vHtml) {  
+                    $("#dvShow").html("");  
+                    $("#dvShow").html(vHtml);  
+                }  
+            });  
+        });  
+    });
+
+</script>  
+
+ @if (@ViewBag.Message != null)
+    {
+        <script type="text/javascript">
+            $(function () {
+                debugger
+                alert("@ViewBag.Message")
+            });
+        </script>
+    }
