@@ -1,0 +1,73 @@
+﻿@model IEnumerable<ShopBridge.Models.tbl_shop>
+<table border="0" cellpadding="0" cellspacing="0" id="tblStud">
+    <thead>
+        <tr>
+            <th>Product Id  
+            </th>
+            <th>Product Name  
+            </th>
+            <th>Product Price 
+            </th>
+            <th>Description 
+            </th>
+            <th>Image 
+            </th>
+            <th>View Details
+            </th>
+            <th>Update Details
+            </th>
+            <th>Delete
+            </th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {  
+        <tr>
+            <td>@item.Id
+            </td>
+            <td>@item.Name
+            </td>
+            <td>@item.Price_
+            </td>
+            <td>@item.Descreption
+            </td>
+            <td>
+                <img src="@Url.Content(@item.Imagepath)" height="100" width="100" />
+            </td>
+            <td>
+                @* <input type="button" name="submit" value="Show Product Details" id="btnShowdata"  /> *@
+
+                <a href="@Url.Action("Index", "ProductShow", new { Id = item.Id })" class="btn btn-primary"><i class="fa fa-edit "></i>
+                    <img src="@Url.Content("~/Images/view-icon-vector-20826037.jpg")" height="50" width="50" />
+                </a>
+                <br />
+            </td>
+             <td>
+                <a href="@Url.Action("Edit", "ProductShow", new { Id = item.Id })" class="btn btn-primary"><i class="fa fa-edit "></i>Update</a>
+                <br />
+
+            </td>
+
+             <td>
+                <a href="@Url.Action("Delete", "ProductShow", new { Id = item.Id })" class="btn btn-primary"><i class="fa fa-edit "></i>
+                     <img src="@Url.Content("~/Images/delete-icon-png-16x16-7.jpg")" height="25" width="25" />
+                </a>
+                <br />
+
+            </td>
+        </tr>     
+    }
+</table>
+<style>
+    #tblStud td {
+        padding: 45px;
+    }
+
+    #tblStud th {
+        background: #aea;
+    }
+</style>
+<div>
+    @Html.ActionLink("Home", "Shop", "Shop")
+</div>
+
